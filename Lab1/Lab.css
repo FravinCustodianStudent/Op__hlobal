@@ -43,8 +43,8 @@
   position: absolute;
   font-family: 'Ubuntu', sans-serif;
   font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
+  font-weight: bolder;
+  font-size: 23px;
   line-height: 21px;
   letter-spacing: 0.04em;
 
@@ -121,12 +121,22 @@
 
 
 }
-.gradieninputsqz:hover ~ .hovertext > .ht  {
+.aa:hover ~ .hovertext > .ht  {
   -webkit-animation: fade-in 0.5s;
   opacity: 1;
 }
-.gradieninputsqz:not(hover) ~ .hovertext > .ht{
+.aa:not(hover) ~ .hovertext > .ht{
   -webkit-animation: fade-out 0.5s;
   opacity: 0;
 }
-
+#generalq{
+  height: 970px;
+  display: flex;
+  left:22%;
+  top: 20%;
+}
+#secondcircleq{
+  position:absolute;
+  left: 71%;
+  top: 106%
+}

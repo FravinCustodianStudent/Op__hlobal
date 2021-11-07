@@ -136,7 +136,11 @@
 .code-wrapper:hover #copy-button {
   opacity: 1;
 }
-
+#bllab2{
+  width: 100%;
+  background: #FFFFFF;
+  margin-left: -1%;
+}
 #copy-success {
   position: absolute;
   bottom: 12px;

@@ -78,7 +78,7 @@
   position: fixed;
   display: block;
   margin-left: 50px;
-  margin-top: 5em;
+  margin-top: 8em;
   width:350px;
   /*%*/
   height: 100%;
@@ -97,7 +97,6 @@
     top:26px;*/
   width: 4em;
   justify-content: center;
-  margin-top:2em;
   height: 4em;
   display: flex;
   flex-direction: column;

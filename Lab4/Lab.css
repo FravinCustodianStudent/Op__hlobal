@@ -39,12 +39,6 @@
   margin-top: 16%;
   margin-left: 18%;
 }
-.manuelementq{
-  position: relative;
-  height: 65%;
-  width: 65%;
-  margin: 0 auto;
-}
 .mtext{
   position: absolute;
   font-family: 'Ubuntu', sans-serif;
@@ -78,21 +72,6 @@
   flex-direction: column;
   z-index: 2;
 }
-.gradieninputsqz{
-  background: radial-gradient(82.92% 82.92% at 81.99% 10.25%, #5AB0C9 0%, #A750FF 48.8%, #F66692 99.48%);
-  border-radius: 50%;
-  /*  left:27px;
-    top:26px;*/
-  width: 20%;
-  justify-content: center;
-  margin-top: 9%;
-  height: 105%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-
 .hovertext,.gradieninputsqz{
   box-sizing: border-box;
 }

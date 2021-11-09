@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/menu.css">
+  <link href="../css/hover.css" rel="stylesheet" media="all">
+  <link href="Lab.css" rel="stylesheet">
+  <link rel='stylesheet' href='../box-shadows.css'>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <meta name="theme-color" content="#fafafa">
+</head>
+<script src="../js/main.js"></script>
+<body>
+<div class="circlegradient" id="firstcircle"></div>
+<div class="circlegradient" id="secondcircle"></div>
+<div class="menu_g">
+  <div class="menu_u">
+    <map class="aa"><a href="../menu.html"><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/menu.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Меню</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href="purpose.html"><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/target.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Мета Роботи</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href="task3.html"><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/audit.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Умова задачі</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=Analize.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/search.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Аналіз задачі</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=Blockscheme.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/block-scheme-of-geometrical-shapes.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Блок-схема</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=Code.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/programming-code-signs.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Код програми</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=result.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/check-mark.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Результат<br>виконання </h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=proof.html> <div class="gradieninputsqz hvr-grow" >
+      <img src="../img/approve.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Аналіз достовірності</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=conclusion.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/finalq.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Висновки</h2></div>
+  </div>
+
+
+
+
+</div>
+<div class="mblock" id="generalqzzzz">
+  <h1 id="maintextqqq">Код програми</h1>
+  <div id="gradieninputsq" >
+    <img src="../img/programming-code-signs.png" class="manuelement"></div>
+  <div class="line" id="firstlineqq"></div>
+  <div id="purposetext">
+  <div class="container">
+    <p class="language">C++</p>
+    <div class="code-wrapper">
+      <pre>
+        <code id="code">
+#include < iostream>
+#include < math.h>
+using namespace std;
+int nbas;
+bool nu = false;
+float numberinput() {
+    float x;
+    while (!(cin >> x)) {
+        cout << "Some of inputs were wrong, try again\n";
+        cin.clear();
+        fflush(stdin);
+        cin.ignore(std::numeric_limits< std::streamsize>::max(), '\n');
+    }
+    return x;
+}
+int factorial(long long N) {
+	if (N <= 0)
+	{
+		return 1;
+	}
+	else if (N == 1) {
+		return 1;
+	}
+	return N * factorial(N - 1);
+}
+int akkerman(int m,int n,int &deep) {
+    if (m==0)
+    {
+        return n+1;
+    }
+    else if(m>0 && n==0){
+        akkerman(m - 1, 1,++deep);
+    }
+    else if (m > 0 && n > 0) {
+        akkerman(m - 1, akkerman(m, n - 1, ++deep),++deep);
+
+    }
+}
+void simplenumber(int x) {
+    if ((x * x) % 24 == 1|| x==2 || x==3)
+    {
+        nu = true;
+    }
+
+}
+int funct(int n,int k) {
+
+    if (n%k==0)
+    {
+        simplenumber(k);
+        if(nu)
+        {
+            cout << k;
+            n /= k;
+            k = 1;
+            nu = false;
+        }
+
+    }
+
+    if (k>n)
+    {
+        return 0;
+    }
+    else {
+        funct(n, k + 1);
+    }
+}
+void task1() {
+    int m, n,stack_deep=0;
+    cout << "input m :";
+    m = numberinput();
+    cout << "input n :";
+    n = numberinput();
+    cout << "result of recursive function :\t"<< akkerman(m, n, stack_deep) << endl;
+    cout << "amount of recursive iteratiom:\t" << stack_deep << endl;
+
+
+}
+void task2() {
+    int n=0;
+    cout << "input n : ";
+    n = numberinput();
+    nbas = n;
+    int k = 2;
+    funct(n,k);
+
+}
+int main()
+{
+    int chs; //choice
+    setlocale(LC_ALL, "Rus");
+    cout << "\n----START----\nLab 5. Var23. Student Fesak Andrii IPZ-12\nWelcome to see recurent function in C++\n--------" << endl;
+    while (true) {
+        cout << "\nChoose the task by press (1)(2) on your keyboard:  ";
+        chs = numberinput();
+        switch (chs) {
+        case 1:
+            task1();
+            break;
+        case 2:
+            task2();
+            break;
+        }
+
+        cout << "\nDo you want to continue?\n1 - No\nAnything else - Yes\nYour answer: ";
+        cin >> chs;
+        if (chs == 1)
+        {
+            break;
+            system("cls");
+        }
+    }
+}
+        </code>
+      </pre>
+      <button id="copy-button">Copy</button>
+    </div>
+    <span id="copy-success">Code copied!</span>
+  </div>
+
+  </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+</body>
+</html>

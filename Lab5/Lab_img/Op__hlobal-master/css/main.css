@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+html {
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+  resize: vertical;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers
+ */
+
+.hidden,
+[hidden] {
+  display: none !important;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ *
+ * 1. For long content, line feeds are not interpreted as spaces and small width
+ *    causes content to wrap 1 word per line:
+ *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ */
+
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  /* 1 */
+}
+
+/*
+ * Extends the .sr-only class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.sr-only.focusable:active,
+.sr-only.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  white-space: inherit;
+  width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+  visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix::before,
+.clearfix::after {
+  content: " ";
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+  /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+  (-webkit-min-device-pixel-ratio: 1.25),
+  (min-resolution: 1.25dppx),
+  (min-resolution: 120dpi) {
+  /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   https://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: #fff !important;
+    color: #000 !important;
+    /* Black prints faster */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+
+  /*
+   * Don't show links that are fragment identifiers,
+   * or use the `javascript:` pseudo protocol
+   */
+  a[href^="#"]::after,
+  a[href^="javascript:"]::after {
+    content: "";
+  }
+
+  pre {
+    white-space: pre-wrap !important;
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  /*
+   * Printing Tables:
+   * https://web.archive.org/web/20180815150934/http://css-discuss.incutio.com/wiki/Printing_Tables
+   */
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+body {
+  background-image: url(background.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+#logo{
+  position: absolute;
+  width: 362px;
+  left:40%;
+  height: 216px;
+  text-align: center;
+}
+.mblock{
+  position: absolute;
+  background: linear-gradient(86.18deg, rgba(255, 255, 255, 0.204) 0%, rgba(255, 255, 255, 0.014875) 128.02%);
+  backdrop-filter: blur(22px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 16px;
+  width: 55%;
+}
+.line{
+  position: absolute;
+  height: 5px;
+  width: 75%;
+
+  background: #F66692;
+  border-radius: 25px;
+}
+.circlegradient{
+  background: radial-gradient(82.92% 82.92% at 81.99% 10.25%, #5AB0C9 0%, #A750FF 48.8%, #F66692 99.48%);
+  border-radius: 50%;
+  width: 215px;
+  height: 215px;
+}
+.gradieninput{
+  position: absolute;
+  background: radial-gradient(82.92% 82.92% at 81.99% 10.25%, #5AB0C9 0%, #A750FF 48.8%, #F66692 99.48%);
+  border-radius: 50%;
+/*  left:27px;
+  top:26px;*/
+  width: 87px;
+  height: 87px;
+  z-index: 2;
+}
+/*.radius1{
+  position: absolute;
+  width: 141px;
+  height: 141px;
+  border-radius: 50%;
+  background: radial-gradient(82.92% 82.92% at 81.99% 10.25%, rgba(166, 81, 254, 0.3) 0%, rgba(98, 165, 207, 0.3) 48.8%, rgba(246, 102, 146, 0.3) 99.48%);
+  filter: blur(4px);
+  backdrop-filter: blur(4px);
+  z-index: -3;
+}
+.radius2{
+  position: absolute;
+  width: 113px;
+  height: 113px;
+  border-radius: 50%;
+  top:14px;
+  left: 12px;
+  background: radial-gradient(82.92% 82.92% at 81.99% 10.25%, rgba(166, 81, 254, 0.3) 0%, rgba(98, 165, 207, 0.3) 48.8%, rgba(246, 102, 146, 0.3) 99.48%);
+  filter: blur(4px);
+  backdrop-filter: blur(4px);
+  z-index: -2;
+}*/
+.menuelement{
+  position: absolute;
+  height: 87px;
+  width: 87px;
+  left: 2%;
+  top: 5%;
+
+}
+p{
+  font-family: Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0.04em;
+  color:#FFFFFF;
+}
+ul{
+  font-family: Ubuntu, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0.04em;
+  color:#FFFFFF;
+}
+h2{
+  text-align: center;
+  color:#FFFFFF;
+}
+.mtext{
+  font-weight: bold;
+}
+.innerimage{
+  margin-left: 35%;
+  border-radius: 35px;
+  box-shadow: 0px 0px 21px 2px rgba(255, 255, 255, 0.25);
+
+}

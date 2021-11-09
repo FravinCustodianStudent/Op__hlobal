@@ -1,0 +1,42 @@
+#maintextq{
+  width:77%;
+  position: relative;
+  top:4%;
+  left: 11%;
+  font-family: 'Ubuntu', sans-serif;
+  text-align: center;
+  font-size: 22px;
+  color:#FFFFFF;
+
+}
+#firstlineq{
+  top:14%;
+  left: 13%;
+}
+.menuBlock{
+  display: block;
+  margin-top:15%;
+  margin-left:15%;
+  position: absolute;
+  width: 75%;
+  height: 450px;
+}
+.menunumber{
+  position: relative;
+  margin: 18% auto;
+  text-align: center;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 35px;
+  color:#FFFFFF;
+}
+.gradieninputs{
+  position: relative;
+  background: radial-gradient(82.92% 82.92% at 81.99% 10.25%, #5AB0C9 0%, #A750FF 48.8%, #F66692 99.48%);
+  border-radius: 50%;
+  /*  left:27px;
+    top:26px;*/
+  width: 87px;
+  margin:auto 2%;
+  height: 87px;
+  z-index: 2;
+}

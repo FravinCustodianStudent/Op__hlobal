@@ -5,7 +5,8 @@
   margin-left: 12%;
 }
 #idn{
-  margin-left: 25%;
+  margin-left: 0%;
+  width: 100%;
 }
 #idnx{
    margin-left: 0%;
@@ -17,7 +18,7 @@
   margin-left: 25%;
 }
 #generalqzzzz{
-  height: 13170px;
+  height: 14189px;
   display: flex;
   left: 22%;
   top: 20%;

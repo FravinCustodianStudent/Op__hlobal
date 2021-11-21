@@ -106,62 +106,22 @@
     <div class="code-wrapper">
       <pre>
         <code id="code">
+// Lab 7.0.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
 #include < iostream>
-#include < ctime>
-#include < cmath>
-int binarySearch(int arr[], int, int, int);
-float numberinput() {
-    float x;
-    while (!(std::cin >> x)) {
-        std::cout << "Some of inputs were wrong, try again\n";
-        std::cin.clear();
-        fflush(stdin);
-        std::cin.ignore(std::numeric_limits< std::streamsize>::max(), '\n');
-    }
-    return int(x);
-}
-void InsertSort(int*& arr, int size)
-{
-    int key, i;
-    for (int k = 1; k < size; k++) {
-        key = arr[k];
-        i = k - 1;
-        while ((i >= 0) && (arr[i] > key)) {
-            arr[i + 1] = arr[i];
-            i = i - 1;
-        }
-        arr[i + 1] = key;
-    }
-}
-int exponentialSearch(int arr[], int n, int x) {
-    if (arr[0] == x)
-        return 0;
-    int i = 1;
-    while (i < n && arr[i] <= x) {
-        i = i * 2;
-    }
-
-    return binarySearch(arr, i / 2,
-        std::min(i, n - 1), x);
-}
-double f(const double x, int a[], const int i, const int max)
-{
-    if (i + 1 < max)return f(x, a, i + 1, max) * x + a[i];
-    else return a[max] * x + a[i];
-}
-int binarySearch(int arr[], int l, int r, int x)
-{
-    if (r >= l)
+#include < iomanip>
+using namespace std;
+enum Choice {
+    First=1,
+    Second=2
+};
+void Print_(int size) {
+    for (int i = 0; i < size * 6; i++)
     {
-        int mid = l + (r - l) / 2;
-        if (arr[mid] == x)
-            return mid;
-        if (arr[mid] > x)
-            return binarySearch(arr, l, mid - 1, x);
-
-        return binarySearch(arr, mid + 1, r, x);
+        cout << "_";
     }
-    return -1;
+    cout <<"\n"<< endl;
 }
 void push_back(int*& arr, int& size, const int value) {
     int* newArray = new int[size + 1];
@@ -192,11 +152,21 @@ void pop_back(float*& arr, int& size) {
     {
         newArray[i] = arr[i];
     }
-    delete[] arr;//очитска старых данных
+    delete[] arr;//������� ������ ������
     arr = newArray;
 }
-void create_massive(int*& firstmassive, int*& secondmassive, const int& size) {
-    int choice = 0, chance;
+float numberinput() {//Нам пртрібен алгоритм зручної перевіри на число, тобто ця функція перевіряє, чи ввів користувач число
+    float x;
+    while (!(std::cin >> x)) {
+        std::cout << "Some of inputs were wrong, try again\n";
+        std::cin.clear();
+        fflush(stdin);
+        std::cin.ignore(std::numeric_limits< std::streamsize>::max(), '\n');
+    }
+    return int(x);
+}
+void create_massive(int** firstmassive, const int& size) {
+    int choice = 0, chance,rangemax, rangemin;
     std::cout << "Task : \nChoos type of massive creation:\n 1 - manual(input element of arrays by your keybord\n 2 - auto(massives will fill automaticaly by random numbers\n:";
     while (true) {
         choice = numberinput();
@@ -208,469 +178,354 @@ void create_massive(int*& firstmassive, int*& secondmassive, const int& size) {
             std::cout << "try again:";
         }
     }
-    switch (choice) {
-    case 1:
+    Choice choicz = static_cast< Choice>(choice);//Для вирішення проблеми магічних чисел
+    switch (choicz) {
+    case First:
         for (int i = 0; i < size; i++)
         {
-            std::cout << "Input element " << i + 1 << "of first array" << std::endl;
-            firstmassive[i] = numberinput();
-        }
-        for (int i = 0; i < size; i++)
-        {
-            std::cout << "Input element " << i + 1 << "of second array" << std::endl;
-            secondmassive[i] = numberinput();
-        }
-        break;
-    case 2:
-        for (int i = 0; i < size; i++)
-        {
-            firstmassive[i] = rand() % 10;
-            chance = rand() % 2;
-            if (chance == 1)
+            for (int i1 = 0; i1 < size; i1++)
             {
-                firstmassive[i] *= -1;
+                std::cout << "Input element " << i + 1 << "of array" << std::endl;
+                firstmassive[i][i1] = numberinput();
             }
-            secondmassive[i] = 0 + rand() % 10;
-            chance = rand() % 2;
-            if (chance == 1)
-            {
-                secondmassive[i] *= -1;
-            }
+
         }
         break;
-    }
-}
-void create_massive(int*& firstmassive, const int& size) {
-    int choice = 0, chance;
-    std::cout << "Task : \nChoos type of massive creation:\n 1 - manual(input element of arrays by your keybord\n 2 - auto(massives will fill automaticaly by random numbers\n:";
-    while (true) {
-        choice = numberinput();
-        if (choice == 1 || choice == 2)
-        {
-            break;
-        }
-        else {
-            std::cout << "try again:";
-        }
-    }
-    switch (choice) {
-    case 1:
-        for (int i = 0; i < size; i++)
-        {
-            std::cout << "Input element " << i + 1 << "of array" << std::endl;
-            firstmassive[i] = numberinput();
-        }
-        break;
-    case 2:
-        for (int i = 0; i < size; i++)
-        {
-            firstmassive[i] = rand() % 70;
-        }
-        break;
-    }
-}
-void Gorner(float*& first_arr, float*& second_arr, float& result, int& size_of_massive_1, int& size_of_second_massive, int& n, bool& Flag) {
-    second_arr[0] = first_arr[0];
-    float result_final = 0;
-    for (int i = 1; i < size_of_massive_1; i++)
-    {
-        if (i == 1)
-        {
-            push_back(second_arr, size_of_second_massive, result * second_arr[i - 1] + first_arr[i]);
-        }
-        else {
-            result_final = result * second_arr[i - 1] + first_arr[i];
-            push_back(second_arr, size_of_second_massive, result_final);
-        }
-
-    }
-    if (result_final == 0)
-    {
-        n++;
-        Flag = true;
-    }
-    for (int i = size_of_massive_1; i > 1; i--)
-    {
-        pop_back(first_arr, size_of_massive_1);
-
-    }
-}
-void find_root(const float* massive, const int& size, float*& first_arr, int& arrsize, float& result) {
-    int firstElement = massive[0], lastelement = massive[size], sizeFirst = 0, sizeSecond = 0;
-    float* p = new float[0];//масив дільників вільного члена
-    float* q = new float[0];//масив дільників першого коофіцієнта
-    float trial_result = 0;
-    for (int i = -1 * fabs(lastelement); i <= fabs(lastelement); i++)
-    {
-        if (i != 0 && lastelement % i == 0)
-        {
-            push_back(p, sizeFirst, i);
-
-
-        }
-    }
-    for (int i = -1 * fabs(firstElement); i <= fabs(firstElement); i++)
-    {
-        if (i != 0 && firstElement % i == 0)
-        {
-            push_back(q, sizeSecond, i);
-
-
-        }
-    }
-    for (int i = 0; i < sizeFirst; i++)
-    {
-        for (int i1 = 0; i1 < sizeSecond; i1++)
-        {
-            if (q[i1] != 0)
-            {
-                push_back(first_arr, arrsize, p[i] / q[i1]);
-            }
-
-        }
-
-    }
-
-    std::cout << std::endl;
-    for (int i = 0; i < arrsize; i++)
-    {
-
-        for (int i1 = 0; i1 <= size; i1++)
-        {
-            trial_result += massive[i1] * pow(first_arr[i], size - i1);
-        }
-        if (trial_result == 0)
-        {
-            result = first_arr[i];
-            break;
-        }
-        trial_result = 0;
-    }
-    delete[] p;
-    delete[] q;
-}
-void task1() {
-    int size, size_negative, choice = 0, positive = 0, negative = 0, diffirence, chance;
-    std::cout << "Input size of massives:\t";
-
-    do {
-        size = numberinput();
-    } while (size < 1);
-    size_negative = size;
-    int* first_arr = new int[size];
-    int* second_arr = new int[size];
-
-    create_massive(first_arr, second_arr, size);
-    std::cout << "Array:\t";
-    for (int i = 0; i < size; i++)
-    {
-        std::cout << first_arr[i] << " ";
-        if (first_arr[i] > 0)
-        {
-            positive++;
-        }
-        else if (first_arr[i] < 0) {
-            negative++;
-        }
-        if (i % 5 == 0)
-        {
-            std::cout << std::endl;
-        }
-    }
-    std::cout << "\nAmount of positive elements - " << positive << ". Negative - " << negative << "\n-----------------------" << std::endl;
-    if (positive > negative)
-    {
-        diffirence = positive - negative;
-        if (diffirence == 0)
-        {
-            std::cout << "Second array doesn`t have enought elements for operation" << std::endl;
-        }
-        for (int i = 0; i < size_negative; i++)
-        {
-            if (second_arr[i] < 0) {
-                push_back(first_arr, size, second_arr[i]);
-                diffirence--;
-                if (diffirence <= 0) {
-                    break;
-                }
-            }
-
-        }
-
-    }
-    else if (positive < negative)
-    {
-        diffirence = negative - positive;
-        if (diffirence == 0 || negative == 0)
-        {
-            std::cout << "Second array doesn`t have enought elements for operation" << std::endl;
-        }
-        for (int i = 0; i < size_negative; i++)
-        {
-            if (second_arr[i] > 0) {
-                push_back(first_arr, size, second_arr[i]);
-                diffirence--;
-                if (diffirence <= 0) {
-                    break;
-                }
-            }
-
-        }
-
-    }
-    positive = 0;
-    negative = 0;
-    std::cout << "Array:\t" << "\t";
-    for (int i = 0; i < size; i++)
-    {
-        std::cout << first_arr[i] << " ";
-        if (first_arr[i] > 0)
-        {
-            positive++;
-        }
-        else if (first_arr[i] < 0) {
-            negative++;
-        }
-        if (i % 5 == 0)
-        {
-            std::cout << std::endl;
-        }
-    }
-    if (positive - negative == 0)
-    {
-        std::cout << "\nAmount of positive elements - " << positive << ". Negative - " << negative << "\n-----------------------" << std::endl;
-    }
-    else {
-        std::cout << "Second array doesn`t have enought elements for operation" << "\n-----------------------" << std::endl;
-    }
-
-    delete[] second_arr;
-    delete[] first_arr;
-}
-void task2() {
-    int size, x, result;
-    std::cout << "Input size of massives:\t";
-    do {
-        size = numberinput();
-    } while (size < 1);
-    int* first_arr = new int[size];
-    create_massive(first_arr, size);
-    InsertSort(first_arr, size);
-    for (int i = 0; i < size; i++)
-    {
-        std::cout << first_arr[i] << " ";
-    }
-    std::cout << "input x" << std::endl;
-    x = numberinput();
-    result = exponentialSearch(first_arr, size, x);
-    result == -1 ? std::cout << "Element is not present in array" : std::cout << "Element is present at index " << result;
-    delete[] first_arr;
-}
-void task3() {
-    int n, choice, x, rangemin, rangemax;
-    float result = 0;
-    std::cout << "Input n: ";
-    do {
-        n = numberinput();
-    } while (n < 2);
-    int arrsize = 0;
-    //Користувач вводить кількість многочленів, а ми створюємо масив із коофіцієнтів, яких на 1 більше
-    float* a = new float[n];
-    float* k = new float[arrsize];//масив корнів
-    std::cout << "\nChoos type of massive creation:\n 1 - manual(input element of arrays by your keybord\n 2 - auto(massives will fill automaticaly by random numbers\n:";
-    while (true) {
-        choice = numberinput();
-        if (choice == 1 || choice == 2)
-        {
-            break;
-        }
-        else {
-            std::cout << "try again:";
-        }
-    }
-    switch (choice) {
-    case 1:
-        for (int i = 0; i <= n; i++)
-        {
-            std::cout << "Set k";
-            a[i] = numberinput();
-        }
-        break;
-    case 2:
+    case Second:
         std::cout << "Set begin of range" << std::endl;
         rangemin = numberinput();
         do {
             std::cout << "Set end of range" << std::endl;
             rangemax = numberinput();
         } while (rangemax < rangemin);
-        for (int i = 0; i <= n; i++)
+        for (int i = 0; i < size; i++)
         {
-            a[i] = rand() % rangemax + rangemin;
+            for (int i1 = 0; i1 < size; i1++)
+            {
+                firstmassive[i][i1] = rand() % rangemax + rangemin;
+            }
+
         }
         break;
     }
-    for (int i = 0; i <= n; i++)
-    {
-        if (i == 0 || a[i] < 0 && n - i != 0)
+}
+void create_massive(int** firstmassive, const int& m,const int&n) {
+    int choice = 0, chance, rangemax, rangemin;
+    std::cout << "Task : \nChoos type of massive creation:\n 1 - manual(input element of arrays by your keybord\n 2 - auto(massives will fill automaticaly by random numbers\n:";
+    while (true) {
+        choice = numberinput();
+        if (choice == 1 || choice == 2)
         {
-            std::cout << a[i] << "*x^" << n - i;
-        }
-        else if (n - i != 0) {
-            std::cout << " + " << a[i] << "*x^" << n - i;
+            break;
         }
         else {
-            if (a[i] > 0)
-            {
-                std::cout << " + " << a[i];
-            }
-            else {
-                std::cout << a[i];
-            }
+            std::cout << "try again:";
         }
+    }
+    Choice choicz = static_cast< Choice>(choice);//Для вирішення проблеми магічних чисел
+    switch (choicz) {
+    case First:
+        for (int i = 0; i < m; i++)
+        {
+            for (int i1 = 0; i1 < n; i1++)
+            {
+                std::cout << "Input element " << i + 1 << "of array" << std::endl;
+                firstmassive[i][i1] = numberinput();
+            }
+
+        }
+        break;
+    case Second:
+        std::cout << "Set begin of range" << std::endl;
+        do {
+            rangemin = numberinput();
+        } while (rangemin < 0 );
+        do {
+            std::cout << "Set end of range" << std::endl;
+            rangemax = numberinput();
+        } while (rangemax < rangemin);
+        for (int i = 0; i < m; i++)
+        {
+            for (int i1 = 0; i1 < n; i1++)
+            {
+                firstmassive[i][i1] = rand() % rangemax + rangemin;
+            }
+
+        }
+        break;
+    }
+}
+void task1() {
+    int n;
+    std::cout << "Input n: ";
+    do {
+        n = numberinput();
+    } while (n < 3);
+    int** matrix = new int*[n];//Двовимірний масив це, по факту, масив покажчіків на одновимірні масив
+    for (int i = 0; i < n; i++)//Тому ми і створюємо ці масиви в масиві
+    {
+        matrix[i] = new int[n];
+    }
+    create_massive(matrix, n);
+    cout << "\nOriginal matrix" << endl;
+    Print_(n);
+    for (int i = 0; i < n; i++)
+    {
+        cout << "| ";
+        for (int i1 = 0; i1 < n; i1++)
+        {
+
+            cout << setw(5) << matrix[i][i1];
+        }
+        cout <<" |"<< endl;
 
     }
-    std::cout << std::endl;
-    int size_of_fucking_final_massive = 1;
-    int size_of_fucking_final_massive_2 = 1;
-    int n1 = 1;
-    bool flag;
-    float result_final = 0;
-    find_root(a, n, k, arrsize, result);
-    float* final = new float[size_of_fucking_final_massive];
-    float* final1 = new float[size_of_fucking_final_massive_2];
-    final[0] = a[0];
-    if (result == 0)
+    Print_(n);
+    int sum_same=0, perimeter_sum=0, dioganal_multiplication=1;
+    //Заповнення данних за умовою
+    for (int i = 0; i < n; i++)
     {
-        std::cout << "The polinom doesn`t have roots" << std::endl;
+        for (int i1 = 0; i1 < n; i1++)
+        {
+            if (i != (n - 1) && matrix[i][i1]==matrix[i+1][i1])
+            {
+               sum_same += matrix[i][i1];
+            }
+            if (i1==(n-i-1))
+            {
+                dioganal_multiplication *= matrix[i][i1];
+            }
+            if (i==0 || i1==0||i1==(n-1))
+            {
+                perimeter_sum += matrix[i][i1];
+            }
+
+
+
+        }
+    }
+    Print_(n);
+    float average_value;
+    const int size_of_result_massive = 3;
+    int result_massive[size_of_result_massive];
+    result_massive[0] = sum_same;
+    result_massive[1] = dioganal_multiplication;
+    result_massive[2] = perimeter_sum;
+    average_value = (sum_same + dioganal_multiplication + perimeter_sum)/3;
+    for (int i = 0; i < n; i++)
+    {
+        for (int i1 = 0; i1 < n; i1++)
+        {
+            if (i != (n - 1) && matrix[i][i1] == matrix[i + 1][i1])
+            {
+                sum_same += matrix[i][i1]*2;
+            }
+            if (i1 == (n - i - 1))
+            {
+                dioganal_multiplication *= matrix[i][i1];
+            }
+            if (i == 0 || i1 == 0 || i1 == (n - 1))
+            {
+                perimeter_sum += matrix[i][i1];
+            }
+
+
+
+        }
+    }
+    int leftSide, rigthSide;
+    if (n%2==0)
+    {
+        leftSide = n / 2 - 1;
+        rigthSide = n / 2;
     }
     else {
-        for (int i = 1; i <= n; i++)
-        {
-            if (i == 1)
-            {
-
-                push_back(final, size_of_fucking_final_massive, result * a[i - 1] + a[i]);
-            }
-            else {
-                result_final = result * final[i - 1] + float(a[i]);
-                push_back(final, size_of_fucking_final_massive, result_final);
-            }
-
-        }
-        if (result_final == 0)
-        {
-            pop_back(final, size_of_fucking_final_massive);
-            if (result < 0)
-            {
-                std::cout << "\n\n( x+" << fabs(result) << " )" << "( ";
-                for (int i = 0; i < size_of_fucking_final_massive; i++)
-                {
-                    if (i == 0 || final[i] < 0 && size_of_fucking_final_massive - i != 0)
-                    {
-                        std::cout << final[i] << "*x^" << n - i;
-                    }
-                    else if (size_of_fucking_final_massive - i != 0) {
-                        std::cout << " + " << final[i] << "*x^" << size_of_fucking_final_massive - i;
-                    }
-                    else {
-                        if (final[i] > 0)
-                        {
-                            std::cout << " + " << final[i];
-                        }
-                        else {
-                            std::cout << final[i];
-                        }
-                    }
-                }
-            }
-            else {
-                std::cout << "\n\n( x-" << result << " )" << "( ";
-                for (int i = 0; i < size_of_fucking_final_massive; i++)
-                {
-                    if (i == 0 || final[i] < 0 && size_of_fucking_final_massive - i != 0)
-                    {
-                        std::cout << final[i] << "*x^" << n - i;
-                    }
-                    else if (size_of_fucking_final_massive - i != 0) {
-                        std::cout << " + " << final[i] << "*x^" << size_of_fucking_final_massive - i;
-                    }
-                    else {
-                        if (final[i] > 0)
-                        {
-                            std::cout << " + " << final[i];
-                        }
-                        else {
-                            std::cout << final[i];
-                        }
-                    }
-                }
-            }
-
-            std::cout << " )" << std::endl;
-            while (true) {
-                if (n1 % 2 == 0)
-                {
-                    Gorner(final1, final, result, size_of_fucking_final_massive_2, size_of_fucking_final_massive, n1, flag);
-                }
-                else {
-                    Gorner(final, final1, result, size_of_fucking_final_massive, size_of_fucking_final_massive_2, n1, flag);
-                }
-                if (!flag)
-                {
-                    break;
-                }
-
-                flag = false;
-            }
-            if (n1 == 0)
-            {
-                std::cout << "Root doesn`t have a power" << std::endl;
-            }
-            else {
-                std::cout << "Power of root is - " << n1 << std::endl;
-            }
-        }
-        else {
-            std::cout << "This equation doesn`t have a roots" << std::endl;
-        }
+        leftSide = (n - 1) / 2;
+        rigthSide = leftSide;
     }
 
-    delete[] final;
-    delete[] k;
+    for (int i = 0; i < n; i++)
+    {
+        if (n % 2 == 0 && i >= (n / 2) - 1)
+        {
+            leftSide--;
+            rigthSide++;
+        }
+        else if (n % 2 != 0 && i >= (n - 1) / 2)
+        {
+            leftSide--;
+            rigthSide++;
+        }
+        for (int i1 = 0; i1 < n; i1++)
+        {
+
+            if (n % 2 == 0)
+            {
+
+                if (i >= (n / 2) - 1)
+                {
+                    if (i1 > leftSide && i1 < rigthSide)
+                    {
+                        matrix[i][i1] = average_value;
+                    }
+                }
+            }
+            else {
+                if (i >= (n -1) / 2)
+                {
+                    if (i1== (n - 1) / 2)
+                    {
+                        matrix[i][i1] = average_value;
+                    }
+                    else if (i1 > leftSide && i1 < rigthSide)
+                    {
+                        matrix[i][i1] = average_value;
+                    }
+
+                }
+            }
+        }
+
+
+
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cout << "| ";
+        for (int i1 = 0; i1 < n; i1++)
+        {
+
+            cout << setw(7) << matrix[i][i1];
+        }
+        cout << " |" << endl;
+
+    }
+    Print_(n);
+    for (int i = 0; i < n; i++)
+    {
+        delete[] matrix[i];
+    }
+    delete[] matrix;
 }
-int main()
-{
-    int chs; //choice
-   // srand(time(NULL));
+void task2() {
+    int n,m;
+    std::cout << "Input n: ";
+    do {
+        n = numberinput();
+    } while (n < 2);
+    m = n;// Для перемноження сматриць C X Потрібно щоб кількість рядків співпала з кількістью стовпців
+    int** matrix = new int* [m];//Двовимірний масив це, по факту, масив покажчіків на одновимірні масив
+    for (int i = 0; i < n; i++)//Тому ми і створюємо ці масиви в масиві
+    {
+        matrix[i] = new int[n];
+    }
+    create_massive(matrix, m, n);
+    Print_(n);
+    for (int i = 0; i < m; i++)
+    {
+        cout << "| ";
+        for (int i1 = 0; i1 < n; i1++)
+        {
+
+            cout << setw(5) << matrix[i][i1];
+        }
+        cout << " |" << endl;
+
+    }
+    Print_(n);
+    int* x = new int[m];
+    int* C = new int[n];
+    int* S = new int[n];
+    for (int i = 0; i < n; i++)//Для обрахунку+= в змінній повинно щось бути крім мусору компілятора
+    {
+        S[i] = 0;
+    }
+    int result_x = 0, result_c = 0;
+    for (int i = 0; i < m; i++)
+    {
+        result_x = matrix[i][0];
+        for (int i1 = 0; i1 < n; i1++)
+        {
+            if (result_x>matrix[i][i1])
+            {
+                result_x = matrix[i][i1];
+            }
+            S[i] += matrix[i][i1];
+
+        }
+        x[i] = result_x;
+    }
+    for (int i = 0; i < n; i++)//Задаємо вартість
+    {
+        C[i] = rand() % 100;
+    }
+    cout << "C =(";
+    for (int i = 0; i < n; i++)
+    {
+        cout << setw(4) << C[i];
+    }
+    cout << " ) \n\n\nX\n_" << endl;
+    for (int i = 0; i < m; i++)
+    {
+        cout << x[i] << endl;
+    }
+    cout << "_\n" << endl;
+
+    for (int i = 0; i < n; i++)
+    {
+
+    }
+    for (int i = 0; i < n; i++)
+    {
+        delete[] matrix[i];
+    }
+    int P=0;
+    for (int i = 0; i < n; i++)
+    {
+        P += C[i] * x[i];
+    }
+    cout << "S: {";
+    for (int i = 0; i < n; i++)
+    {
+        cout << setw(5) << S[i];
+    }
+    cout << "}\nP= " << P;
+    delete[] x;
+    delete[] C;
+    delete[] S;
+}
+int main(){
+    srand(time(NULL));
+    Choice choice;// Enum - єлементи для вирішення проблеми магічних чисел
+    int Ch;
     setlocale(LC_ALL, "Rus");
-    std::cout << "\n----START----\nLab 6. Var23. Student Fesak Andrii IPZ-12\nWelcome to see recurent function in C++\n--------" << std::endl;
+    std::cout << "\n----START----\nLab 7. Var23. Student Fesak Andrii IPZ-12\nWelcome to see recurent function in C++\n--------" << std::endl;
+    //Логічно, що програма повинна виконуватись поки користувач цього хоче тому while(true)
     while (true) {
-        std::cout << "\nChoose the task by press (1)(2)(3) on your keyboard:  ";
-        chs = numberinput();
-        switch (chs) {
-        case 1:
+        std::cout << "\nChoose the task by press (1)(2) on your keyboard:  ";
+        Ch = numberinput();
+        choice =  static_cast< Choice>(Ch);
+        switch (choice) {
+        case First:
             system("cls");
             task1();
             break;
-        case 2:
+        case Second:
             system("cls");
             task2();
             break;
-        case 3:
-            system("cls");
-            task3();
-            break;
         }
-
+        //Потрібен метод виходу з програми
         std::cout << "\nDo you want to continue?\n1 - No\nAnything else - Yes\nYour answer: ";
-        std::cin >> chs;
-        if (chs == 1)
+        std::cin >> Ch;
+        choice = static_cast< Choice>(Ch);
+        if (choice == First)
         {
             break;
             system("cls");
         }
-
     }
+
 }
         </code>
       </pre>

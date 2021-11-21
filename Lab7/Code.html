@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/menu.css">
+  <link href="../css/hover.css" rel="stylesheet" media="all">
+  <link href="Lab.css" rel="stylesheet">
+  <link rel='stylesheet' href='../box-shadows.css'>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <meta name="theme-color" content="#fafafa">
+</head>
+<script src="../js/main.js"></script>
+<body>
+<div class="circlegradient" id="firstcircle"></div>
+<div class="circlegradient" id="secondcircle"></div>
+<div class="menu_g">
+  <div class="menu_u">
+    <map class="aa"><a href="../menu.html"><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/menu.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Меню</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href="purpose.html"><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/target.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Мета Роботи</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href="task3.html"><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/audit.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Умова задачі</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=Analize.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/search.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Аналіз задачі</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=Blockscheme.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/block-scheme-of-geometrical-shapes.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Блок-схема</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=Code.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/programming-code-signs.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Код програми</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=result.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/check-mark.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Результат<br>виконання </h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=proof.html> <div class="gradieninputsqz hvr-grow" >
+      <img src="../img/approve.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Аналіз достовірності</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=conclusion.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/finalq.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Висновки</h2></div>
+  </div>
+
+
+
+
+</div>
+<div class="mblock" id="generalqzzzz">
+  <h1 id="maintextqqq">Код програми</h1>
+  <div id="gradieninputsq" >
+    <img src="../img/programming-code-signs.png" class="manuelement"></div>
+  <div class="line" id="firstlineqq"></div>
+  <div id="purposetext">
+  <div class="container">
+    <p class="language">C++</p>
+    <div class="code-wrapper">
+      <pre>
+        <code id="code">
+#include < iostream>
+#include < ctime>
+#include < cmath>
+int binarySearch(int arr[], int, int, int);
+float numberinput() {
+    float x;
+    while (!(std::cin >> x)) {
+        std::cout << "Some of inputs were wrong, try again\n";
+        std::cin.clear();
+        fflush(stdin);
+        std::cin.ignore(std::numeric_limits< std::streamsize>::max(), '\n');
+    }
+    return int(x);
+}
+void InsertSort(int*& arr, int size)
+{
+    int key, i;
+    for (int k = 1; k < size; k++) {
+        key = arr[k];
+        i = k - 1;
+        while ((i >= 0) && (arr[i] > key)) {
+            arr[i + 1] = arr[i];
+            i = i - 1;
+        }
+        arr[i + 1] = key;
+    }
+}
+int exponentialSearch(int arr[], int n, int x) {
+    if (arr[0] == x)
+        return 0;
+    int i = 1;
+    while (i < n && arr[i] <= x) {
+        i = i * 2;
+    }
+
+    return binarySearch(arr, i / 2,
+        std::min(i, n - 1), x);
+}
+double f(const double x, int a[], const int i, const int max)
+{
+    if (i + 1 < max)return f(x, a, i + 1, max) * x + a[i];
+    else return a[max] * x + a[i];
+}
+int binarySearch(int arr[], int l, int r, int x)
+{
+    if (r >= l)
+    {
+        int mid = l + (r - l) / 2;
+        if (arr[mid] == x)
+            return mid;
+        if (arr[mid] > x)
+            return binarySearch(arr, l, mid - 1, x);
+
+        return binarySearch(arr, mid + 1, r, x);
+    }
+    return -1;
+}
+void push_back(int*& arr, int& size, const int value) {
+    int* newArray = new int[size + 1];
+    for (int i = 0; i < size; i++)
+    {
+        newArray[i] = arr[i];
+    }
+    newArray[size] = value;
+    size++;
+    delete[] arr;
+    arr = newArray;
+}
+void push_back(float*& arr, int& size, const float value) {
+    float* newArray = new float[size + 1];
+    for (int i = 0; i < size; i++)
+    {
+        newArray[i] = arr[i];
+    }
+    newArray[size] = value;
+    size++;
+    delete[] arr;
+    arr = newArray;
+}
+void pop_back(float*& arr, int& size) {
+    size--;
+    float* newArray = new float[size + 1];
+    for (int i = 0; i < size; i++)
+    {
+        newArray[i] = arr[i];
+    }
+    delete[] arr;//очитска старых данных
+    arr = newArray;
+}
+void create_massive(int*& firstmassive, int*& secondmassive, const int& size) {
+    int choice = 0, chance;
+    std::cout << "Task : \nChoos type of massive creation:\n 1 - manual(input element of arrays by your keybord\n 2 - auto(massives will fill automaticaly by random numbers\n:";
+    while (true) {
+        choice = numberinput();
+        if (choice == 1 || choice == 2)
+        {
+            break;
+        }
+        else {
+            std::cout << "try again:";
+        }
+    }
+    switch (choice) {
+    case 1:
+        for (int i = 0; i < size; i++)
+        {
+            std::cout << "Input element " << i + 1 << "of first array" << std::endl;
+            firstmassive[i] = numberinput();
+        }
+        for (int i = 0; i < size; i++)
+        {
+            std::cout << "Input element " << i + 1 << "of second array" << std::endl;
+            secondmassive[i] = numberinput();
+        }
+        break;
+    case 2:
+        for (int i = 0; i < size; i++)
+        {
+            firstmassive[i] = rand() % 10;
+            chance = rand() % 2;
+            if (chance == 1)
+            {
+                firstmassive[i] *= -1;
+            }
+            secondmassive[i] = 0 + rand() % 10;
+            chance = rand() % 2;
+            if (chance == 1)
+            {
+                secondmassive[i] *= -1;
+            }
+        }
+        break;
+    }
+}
+void create_massive(int*& firstmassive, const int& size) {
+    int choice = 0, chance;
+    std::cout << "Task : \nChoos type of massive creation:\n 1 - manual(input element of arrays by your keybord\n 2 - auto(massives will fill automaticaly by random numbers\n:";
+    while (true) {
+        choice = numberinput();
+        if (choice == 1 || choice == 2)
+        {
+            break;
+        }
+        else {
+            std::cout << "try again:";
+        }
+    }
+    switch (choice) {
+    case 1:
+        for (int i = 0; i < size; i++)
+        {
+            std::cout << "Input element " << i + 1 << "of array" << std::endl;
+            firstmassive[i] = numberinput();
+        }
+        break;
+    case 2:
+        for (int i = 0; i < size; i++)
+        {
+            firstmassive[i] = rand() % 70;
+        }
+        break;
+    }
+}
+void Gorner(float*& first_arr, float*& second_arr, float& result, int& size_of_massive_1, int& size_of_second_massive, int& n, bool& Flag) {
+    second_arr[0] = first_arr[0];
+    float result_final = 0;
+    for (int i = 1; i < size_of_massive_1; i++)
+    {
+        if (i == 1)
+        {
+            push_back(second_arr, size_of_second_massive, result * second_arr[i - 1] + first_arr[i]);
+        }
+        else {
+            result_final = result * second_arr[i - 1] + first_arr[i];
+            push_back(second_arr, size_of_second_massive, result_final);
+        }
+
+    }
+    if (result_final == 0)
+    {
+        n++;
+        Flag = true;
+    }
+    for (int i = size_of_massive_1; i > 1; i--)
+    {
+        pop_back(first_arr, size_of_massive_1);
+
+    }
+}
+void find_root(const float* massive, const int& size, float*& first_arr, int& arrsize, float& result) {
+    int firstElement = massive[0], lastelement = massive[size], sizeFirst = 0, sizeSecond = 0;
+    float* p = new float[0];//масив дільників вільного члена
+    float* q = new float[0];//масив дільників першого коофіцієнта
+    float trial_result = 0;
+    for (int i = -1 * fabs(lastelement); i <= fabs(lastelement); i++)
+    {
+        if (i != 0 && lastelement % i == 0)
+        {
+            push_back(p, sizeFirst, i);
+
+
+        }
+    }
+    for (int i = -1 * fabs(firstElement); i <= fabs(firstElement); i++)
+    {
+        if (i != 0 && firstElement % i == 0)
+        {
+            push_back(q, sizeSecond, i);
+
+
+        }
+    }
+    for (int i = 0; i < sizeFirst; i++)
+    {
+        for (int i1 = 0; i1 < sizeSecond; i1++)
+        {
+            if (q[i1] != 0)
+            {
+                push_back(first_arr, arrsize, p[i] / q[i1]);
+            }
+
+        }
+
+    }
+
+    std::cout << std::endl;
+    for (int i = 0; i < arrsize; i++)
+    {
+
+        for (int i1 = 0; i1 <= size; i1++)
+        {
+            trial_result += massive[i1] * pow(first_arr[i], size - i1);
+        }
+        if (trial_result == 0)
+        {
+            result = first_arr[i];
+            break;
+        }
+        trial_result = 0;
+    }
+    delete[] p;
+    delete[] q;
+}
+void task1() {
+    int size, size_negative, choice = 0, positive = 0, negative = 0, diffirence, chance;
+    std::cout << "Input size of massives:\t";
+
+    do {
+        size = numberinput();
+    } while (size < 1);
+    size_negative = size;
+    int* first_arr = new int[size];
+    int* second_arr = new int[size];
+
+    create_massive(first_arr, second_arr, size);
+    std::cout << "Array:\t";
+    for (int i = 0; i < size; i++)
+    {
+        std::cout << first_arr[i] << " ";
+        if (first_arr[i] > 0)
+        {
+            positive++;
+        }
+        else if (first_arr[i] < 0) {
+            negative++;
+        }
+        if (i % 5 == 0)
+        {
+            std::cout << std::endl;
+        }
+    }
+    std::cout << "\nAmount of positive elements - " << positive << ". Negative - " << negative << "\n-----------------------" << std::endl;
+    if (positive > negative)
+    {
+        diffirence = positive - negative;
+        if (diffirence == 0)
+        {
+            std::cout << "Second array doesn`t have enought elements for operation" << std::endl;
+        }
+        for (int i = 0; i < size_negative; i++)
+        {
+            if (second_arr[i] < 0) {
+                push_back(first_arr, size, second_arr[i]);
+                diffirence--;
+                if (diffirence <= 0) {
+                    break;
+                }
+            }
+
+        }
+
+    }
+    else if (positive < negative)
+    {
+        diffirence = negative - positive;
+        if (diffirence == 0 || negative == 0)
+        {
+            std::cout << "Second array doesn`t have enought elements for operation" << std::endl;
+        }
+        for (int i = 0; i < size_negative; i++)
+        {
+            if (second_arr[i] > 0) {
+                push_back(first_arr, size, second_arr[i]);
+                diffirence--;
+                if (diffirence <= 0) {
+                    break;
+                }
+            }
+
+        }
+
+    }
+    positive = 0;
+    negative = 0;
+    std::cout << "Array:\t" << "\t";
+    for (int i = 0; i < size; i++)
+    {
+        std::cout << first_arr[i] << " ";
+        if (first_arr[i] > 0)
+        {
+            positive++;
+        }
+        else if (first_arr[i] < 0) {
+            negative++;
+        }
+        if (i % 5 == 0)
+        {
+            std::cout << std::endl;
+        }
+    }
+    if (positive - negative == 0)
+    {
+        std::cout << "\nAmount of positive elements - " << positive << ". Negative - " << negative << "\n-----------------------" << std::endl;
+    }
+    else {
+        std::cout << "Second array doesn`t have enought elements for operation" << "\n-----------------------" << std::endl;
+    }
+
+    delete[] second_arr;
+    delete[] first_arr;
+}
+void task2() {
+    int size, x, result;
+    std::cout << "Input size of massives:\t";
+    do {
+        size = numberinput();
+    } while (size < 1);
+    int* first_arr = new int[size];
+    create_massive(first_arr, size);
+    InsertSort(first_arr, size);
+    for (int i = 0; i < size; i++)
+    {
+        std::cout << first_arr[i] << " ";
+    }
+    std::cout << "input x" << std::endl;
+    x = numberinput();
+    result = exponentialSearch(first_arr, size, x);
+    result == -1 ? std::cout << "Element is not present in array" : std::cout << "Element is present at index " << result;
+    delete[] first_arr;
+}
+void task3() {
+    int n, choice, x, rangemin, rangemax;
+    float result = 0;
+    std::cout << "Input n: ";
+    do {
+        n = numberinput();
+    } while (n < 2);
+    int arrsize = 0;
+    //Користувач вводить кількість многочленів, а ми створюємо масив із коофіцієнтів, яких на 1 більше
+    float* a = new float[n];
+    float* k = new float[arrsize];//масив корнів
+    std::cout << "\nChoos type of massive creation:\n 1 - manual(input element of arrays by your keybord\n 2 - auto(massives will fill automaticaly by random numbers\n:";
+    while (true) {
+        choice = numberinput();
+        if (choice == 1 || choice == 2)
+        {
+            break;
+        }
+        else {
+            std::cout << "try again:";
+        }
+    }
+    switch (choice) {
+    case 1:
+        for (int i = 0; i <= n; i++)
+        {
+            std::cout << "Set k";
+            a[i] = numberinput();
+        }
+        break;
+    case 2:
+        std::cout << "Set begin of range" << std::endl;
+        rangemin = numberinput();
+        do {
+            std::cout << "Set end of range" << std::endl;
+            rangemax = numberinput();
+        } while (rangemax < rangemin);
+        for (int i = 0; i <= n; i++)
+        {
+            a[i] = rand() % rangemax + rangemin;
+        }
+        break;
+    }
+    for (int i = 0; i <= n; i++)
+    {
+        if (i == 0 || a[i] < 0 && n - i != 0)
+        {
+            std::cout << a[i] << "*x^" << n - i;
+        }
+        else if (n - i != 0) {
+            std::cout << " + " << a[i] << "*x^" << n - i;
+        }
+        else {
+            if (a[i] > 0)
+            {
+                std::cout << " + " << a[i];
+            }
+            else {
+                std::cout << a[i];
+            }
+        }
+
+    }
+    std::cout << std::endl;
+    int size_of_fucking_final_massive = 1;
+    int size_of_fucking_final_massive_2 = 1;
+    int n1 = 1;
+    bool flag;
+    float result_final = 0;
+    find_root(a, n, k, arrsize, result);
+    float* final = new float[size_of_fucking_final_massive];
+    float* final1 = new float[size_of_fucking_final_massive_2];
+    final[0] = a[0];
+    if (result == 0)
+    {
+        std::cout << "The polinom doesn`t have roots" << std::endl;
+    }
+    else {
+        for (int i = 1; i <= n; i++)
+        {
+            if (i == 1)
+            {
+
+                push_back(final, size_of_fucking_final_massive, result * a[i - 1] + a[i]);
+            }
+            else {
+                result_final = result * final[i - 1] + float(a[i]);
+                push_back(final, size_of_fucking_final_massive, result_final);
+            }
+
+        }
+        if (result_final == 0)
+        {
+            pop_back(final, size_of_fucking_final_massive);
+            if (result < 0)
+            {
+                std::cout << "\n\n( x+" << fabs(result) << " )" << "( ";
+                for (int i = 0; i < size_of_fucking_final_massive; i++)
+                {
+                    if (i == 0 || final[i] < 0 && size_of_fucking_final_massive - i != 0)
+                    {
+                        std::cout << final[i] << "*x^" << n - i;
+                    }
+                    else if (size_of_fucking_final_massive - i != 0) {
+                        std::cout << " + " << final[i] << "*x^" << size_of_fucking_final_massive - i;
+                    }
+                    else {
+                        if (final[i] > 0)
+                        {
+                            std::cout << " + " << final[i];
+                        }
+                        else {
+                            std::cout << final[i];
+                        }
+                    }
+                }
+            }
+            else {
+                std::cout << "\n\n( x-" << result << " )" << "( ";
+                for (int i = 0; i < size_of_fucking_final_massive; i++)
+                {
+                    if (i == 0 || final[i] < 0 && size_of_fucking_final_massive - i != 0)
+                    {
+                        std::cout << final[i] << "*x^" << n - i;
+                    }
+                    else if (size_of_fucking_final_massive - i != 0) {
+                        std::cout << " + " << final[i] << "*x^" << size_of_fucking_final_massive - i;
+                    }
+                    else {
+                        if (final[i] > 0)
+                        {
+                            std::cout << " + " << final[i];
+                        }
+                        else {
+                            std::cout << final[i];
+                        }
+                    }
+                }
+            }
+
+            std::cout << " )" << std::endl;
+            while (true) {
+                if (n1 % 2 == 0)
+                {
+                    Gorner(final1, final, result, size_of_fucking_final_massive_2, size_of_fucking_final_massive, n1, flag);
+                }
+                else {
+                    Gorner(final, final1, result, size_of_fucking_final_massive, size_of_fucking_final_massive_2, n1, flag);
+                }
+                if (!flag)
+                {
+                    break;
+                }
+
+                flag = false;
+            }
+            if (n1 == 0)
+            {
+                std::cout << "Root doesn`t have a power" << std::endl;
+            }
+            else {
+                std::cout << "Power of root is - " << n1 << std::endl;
+            }
+        }
+        else {
+            std::cout << "This equation doesn`t have a roots" << std::endl;
+        }
+    }
+
+    delete[] final;
+    delete[] k;
+}
+int main()
+{
+    int chs; //choice
+   // srand(time(NULL));
+    setlocale(LC_ALL, "Rus");
+    std::cout << "\n----START----\nLab 6. Var23. Student Fesak Andrii IPZ-12\nWelcome to see recurent function in C++\n--------" << std::endl;
+    while (true) {
+        std::cout << "\nChoose the task by press (1)(2)(3) on your keyboard:  ";
+        chs = numberinput();
+        switch (chs) {
+        case 1:
+            system("cls");
+            task1();
+            break;
+        case 2:
+            system("cls");
+            task2();
+            break;
+        case 3:
+            system("cls");
+            task3();
+            break;
+        }
+
+        std::cout << "\nDo you want to continue?\n1 - No\nAnything else - Yes\nYour answer: ";
+        std::cin >> chs;
+        if (chs == 1)
+        {
+            break;
+            system("cls");
+        }
+
+    }
+}
+        </code>
+      </pre>
+      <button id="copy-button">Copy</button>
+    </div>
+    <span id="copy-success">Code copied!</span>
+  </div>
+
+  </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+</body>
+</html>

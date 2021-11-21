@@ -107,570 +107,607 @@
       <pre>
         <code id="code">
 #include < iostream>
-#include < ctime>
-#include < cmath>
-int binarySearch(int arr[], int, int, int);
-float numberinput() {
-    float x;
-    while (!(std::cin >> x)) {
-        std::cout << "Some of inputs were wrong, try again\n";
-        std::cin.clear();
-        fflush(stdin);
-        std::cin.ignore(std::numeric_limits< std::streamsize>::max(), '\n');
-    }
-    return int(x);
-}
-void InsertSort(int*& arr, int size)
+#include< iomanip>
+using namespace std;
+
+class MyString
 {
-    int key, i;
-    for (int k = 1; k < size; k++) {
-        key = arr[k];
-        i = k - 1;
-        while ((i >= 0) && (arr[i] > key)) {
-            arr[i + 1] = arr[i];
-            i = i - 1;
-        }
-        arr[i + 1] = key;
-    }
-}
-int exponentialSearch(int arr[], int n, int x) {
-    if (arr[0] == x)
-        return 0;
-    int i = 1;
-    while (i < n && arr[i] <= x) {
-        i = i * 2;
-    }
+public:
 
-    return binarySearch(arr, i / 2,
-        std::min(i, n - 1), x);
-}
-double f(const double x, int a[], const int i, const int max)
+	//конструктор без парамтрів
+	MyString()
+	{
+		str = nullptr;
+		length = 0;
+	}
+
+	//конструктор з параметрами, під час створення об'єкта класу необхідно переробити рядок який він зберігатиме
+	MyString(const char* str)
+	{
+
+		length = strlen(str);// функція strlen отримує кількість символів у рядку, який ми передаємо в об'єкт
+
+		//виділяємо пам'ять для динамічного масиву де зберігатиметься наш рядок
+		this->str = new char[length + 1];
+
+		//копіюємо символи рядка до масиву нашого класу
+		for (int i = 0; i < length; i++)
+		{
+			this->str[i] = str[i];
+		}
+
+
+		//закриваємо рядок термінуючим нулем
+		this->str[length] = '\0';
+
+	}
+	// Деструктор, що відповідає за звільнення ресурсів зайнятих об'єктом, викликається при знищенні об'єкта класу
+	~MyString()
+	{
+
+		delete[] this->str;
+	}
+
+	// Конструктор копіювання, необхідний для створення точної копії об'єкта класу, але в іншій області пам'яті
+	MyString(const MyString& other)
+	{
+		length = strlen(other.str);
+		this->str = new char[length + 1];
+
+		for (int i = 0; i < length; i++)
+		{
+			this->str[i] = other.str[i];
+		}
+
+		this->str[length] = '\0';
+	}
+
+	// перезавантажений оператор привласнення, що викликається коли необхідно присвоїти значення одного об'єкта іншому
+	MyString& operator =(const MyString& other)
+	{
+		if (this->str != nullptr)
+		{
+			delete[] str;
+		}
+
+		length = strlen(other.str);
+		this->str = new char[length + 1];
+
+		for (int i = 0; i < length; i++)
+		{
+			this->str[i] = other.str[i];
+		}
+
+		this->str[length] = '\0';
+
+		return *this;
+
+	}
+
+	//перезавантажений оператор складання, у поточній реалізації класу String необхідний для конкатенації рядків
+	MyString operator+(const MyString& other)
+	{
+		MyString newStr;
+
+		int thisLength = strlen(this->str);
+		int otherLength = strlen(other.str);
+
+		newStr.length = thisLength + otherLength;
+
+		newStr.str = new char[thisLength + otherLength + 1];
+
+		int i = 0;
+		for (; i < thisLength; i++)
+		{
+			newStr.str[i] = this->str[i];
+		}
+
+		for (int j = 0; j < otherLength; j++, i++)
+		{
+			newStr.str[i] = other.str[j];
+		}
+
+		newStr.str[thisLength + otherLength] = '\0';
+
+		return newStr;
+	}
+	MyString operator<<(const MyString& other) {
+		cout << other.str;
+	}
+	void Print()
+	{
+		cout << str;
+	}
+
+	int Length()
+	{
+		return length;
+	}
+
+	bool operator ==(const MyString& other)
+	{
+		if (this->length != other.length)
+		{
+			return false;
+		}
+
+		for (int i = 0; i < this->length; i++)
+		{
+			if (this->str[i] != other.str[i])
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	bool operator !=(const MyString& other)
+	{
+		return !(this->operator==(other));
+	}
+
+	char& operator [](int index)
+	{
+		return this->str[index];
+	}
+
+	MyString(MyString&& other)
+	{
+		this->length = other.length;
+		this->str = other.str;
+		other.str = nullptr;
+	}
+
+private:
+	char* str;
+	int length;
+};
+
+
+
+void Print_(const int& amount);
+float NumberInput();
+enum Choice {
+	First = 1,
+	Second = 2,
+	Third = 3,
+	Fourth = 4,
+	Fifth = 5,
+	EndStatus = 222
+};
+
+Choice choice;
+template< typename T>
+class List
 {
-    if (i + 1 < max)return f(x, a, i + 1, max) * x + a[i];
-    else return a[max] * x + a[i];
-}
-int binarySearch(int arr[], int l, int r, int x)
+public:
+	List();
+	~List();
+
+	//удаление первого элемента в списке
+	void pop_front();
+
+	//добавление элемента в конец списка
+	void push_back(T data);
+
+	// очистить список
+	void clear();
+
+	// получить количество елементов в списке
+	int GetSize() { return Size; }
+
+	// перегруженный оператор []
+	T& operator[](const int index);
+
+	//добавление элемента в начало списка
+	void push_front(T data);
+
+	//добавление элемента в список по указанному индексу
+	void insert(T data, int index);
+
+	//удаление элемента в списке по указанному индексу
+	void removeAt(int index);
+
+	//удаление последнего элемента в списке
+	void pop_back();
+
+private:
+
+
+	template< typename T>
+	class Node
+	{
+	public:
+		Node* pNext;
+		T data;
+
+		Node(T data = T(), Node* pNext = nullptr)
+		{
+			this->data = data;
+			this->pNext = pNext;
+		}
+	};
+	int Size;
+	Node< T>* head;
+};
+
+
+template< typename T>
+List< T>::List()
 {
-    if (r >= l)
-    {
-        int mid = l + (r - l) / 2;
-        if (arr[mid] == x)
-            return mid;
-        if (arr[mid] > x)
-            return binarySearch(arr, l, mid - 1, x);
-
-        return binarySearch(arr, mid + 1, r, x);
-    }
-    return -1;
+	Size = 0;
+	head = nullptr;
 }
-void push_back(int*& arr, int& size, const int value) {
-    int* newArray = new int[size + 1];
-    for (int i = 0; i < size; i++)
-    {
-        newArray[i] = arr[i];
-    }
-    newArray[size] = value;
-    size++;
-    delete[] arr;
-    arr = newArray;
+
+
+template< typename T>
+List< T>::~List()
+{
+	clear();
 }
-void push_back(float*& arr, int& size, const float value) {
-    float* newArray = new float[size + 1];
-    for (int i = 0; i < size; i++)
-    {
-        newArray[i] = arr[i];
-    }
-    newArray[size] = value;
-    size++;
-    delete[] arr;
-    arr = newArray;
+
+
+template< typename T>
+void List< T>::pop_front()
+{
+	Node< T>* temp = head;
+
+	head = head->pNext;
+
+	delete temp;
+
+	Size--;
+
 }
-void pop_back(float*& arr, int& size) {
-    size--;
-    float* newArray = new float[size + 1];
-    for (int i = 0; i < size; i++)
-    {
-        newArray[i] = arr[i];
-    }
-    delete[] arr;//очитска старых данных
-    arr = newArray;
+
+template< typename T>
+void List< T>::push_back(T data)
+{
+	if (head == nullptr)
+	{
+		head = new Node< T>(data);
+	}
+	else
+	{
+		Node< T>* current = this->head;
+
+		while (current->pNext != nullptr)
+		{
+			current = current->pNext;
+		}
+		current->pNext = new Node< T>(data);
+
+	}
+
+	Size++;
 }
-void create_massive(int*& firstmassive, int*& secondmassive, const int& size) {
-    int choice = 0, chance;
-    std::cout << "Task : \nChoos type of massive creation:\n 1 - manual(input element of arrays by your keybord\n 2 - auto(massives will fill automaticaly by random numbers\n:";
-    while (true) {
-        choice = numberinput();
-        if (choice == 1 || choice == 2)
-        {
-            break;
-        }
-        else {
-            std::cout << "try again:";
-        }
-    }
-    switch (choice) {
-    case 1:
-        for (int i = 0; i < size; i++)
-        {
-            std::cout << "Input element " << i + 1 << "of first array" << std::endl;
-            firstmassive[i] = numberinput();
-        }
-        for (int i = 0; i < size; i++)
-        {
-            std::cout << "Input element " << i + 1 << "of second array" << std::endl;
-            secondmassive[i] = numberinput();
-        }
-        break;
-    case 2:
-        for (int i = 0; i < size; i++)
-        {
-            firstmassive[i] = rand() % 10;
-            chance = rand() % 2;
-            if (chance == 1)
-            {
-                firstmassive[i] *= -1;
-            }
-            secondmassive[i] = 0 + rand() % 10;
-            chance = rand() % 2;
-            if (chance == 1)
-            {
-                secondmassive[i] *= -1;
-            }
-        }
-        break;
-    }
+
+template< typename T>
+void List< T>::clear()
+{
+	while (Size)
+	{
+		pop_front();
+	}
 }
-void create_massive(int*& firstmassive, const int& size) {
-    int choice = 0, chance;
-    std::cout << "Task : \nChoos type of massive creation:\n 1 - manual(input element of arrays by your keybord\n 2 - auto(massives will fill automaticaly by random numbers\n:";
-    while (true) {
-        choice = numberinput();
-        if (choice == 1 || choice == 2)
-        {
-            break;
-        }
-        else {
-            std::cout << "try again:";
-        }
-    }
-    switch (choice) {
-    case 1:
-        for (int i = 0; i < size; i++)
-        {
-            std::cout << "Input element " << i + 1 << "of array" << std::endl;
-            firstmassive[i] = numberinput();
-        }
-        break;
-    case 2:
-        for (int i = 0; i < size; i++)
-        {
-            firstmassive[i] = rand() % 70;
-        }
-        break;
-    }
+
+
+template< typename T>
+T& List< T>::operator[](const int index)
+{
+	int counter = 0;
+
+	Node< T>* current = this->head;
+
+	while (current != nullptr)
+	{
+		if (counter == index)
+		{
+			return current->data;
+		}
+		current = current->pNext;
+		counter++;
+	}
 }
-void Gorner(float*& first_arr, float*& second_arr, float& result, int& size_of_massive_1, int& size_of_second_massive, int& n, bool& Flag) {
-    second_arr[0] = first_arr[0];
-    float result_final = 0;
-    for (int i = 1; i < size_of_massive_1; i++)
-    {
-        if (i == 1)
-        {
-            push_back(second_arr, size_of_second_massive, result * second_arr[i - 1] + first_arr[i]);
-        }
-        else {
-            result_final = result * second_arr[i - 1] + first_arr[i];
-            push_back(second_arr, size_of_second_massive, result_final);
-        }
 
-    }
-    if (result_final == 0)
-    {
-        n++;
-        Flag = true;
-    }
-    for (int i = size_of_massive_1; i > 1; i--)
-    {
-        pop_back(first_arr, size_of_massive_1);
-
-    }
+template< typename T>
+void List< T>::push_front(T data)
+{
+	head = new Node< T>(data, head);
+	Size++;
 }
-void find_root(const float* massive, const int& size, float*& first_arr, int& arrsize, float& result) {
-    int firstElement = massive[0], lastelement = massive[size], sizeFirst = 0, sizeSecond = 0;
-    float* p = new float[0];//масив дільників вільного члена
-    float* q = new float[0];//масив дільників першого коофіцієнта
-    float trial_result = 0;
-    for (int i = -1 * fabs(lastelement); i <= fabs(lastelement); i++)
-    {
-        if (i != 0 && lastelement % i == 0)
-        {
-            push_back(p, sizeFirst, i);
+
+template< typename T>
+void List< T>::insert(T data, int index)
+{
+
+	if (index == 0)
+	{
+		push_front(data);
+	}
+	else
+	{
+		Node< T>* previous = this->head;
+
+		for (int i = 0; i < index - 1; i++)
+		{
+			previous = previous->pNext;
+		}
+
+		Node< T>* newNode = new Node< T>(data, previous->pNext);
+
+		previous->pNext = newNode;
+
+		Size++;
+	}
 
 
-        }
-    }
-    for (int i = -1 * fabs(firstElement); i <= fabs(firstElement); i++)
-    {
-        if (i != 0 && firstElement % i == 0)
-        {
-            push_back(q, sizeSecond, i);
 
 
-        }
-    }
-    for (int i = 0; i < sizeFirst; i++)
-    {
-        for (int i1 = 0; i1 < sizeSecond; i1++)
-        {
-            if (q[i1] != 0)
-            {
-                push_back(first_arr, arrsize, p[i] / q[i1]);
-            }
 
-        }
-
-    }
-
-    std::cout << std::endl;
-    for (int i = 0; i < arrsize; i++)
-    {
-
-        for (int i1 = 0; i1 <= size; i1++)
-        {
-            trial_result += massive[i1] * pow(first_arr[i], size - i1);
-        }
-        if (trial_result == 0)
-        {
-            result = first_arr[i];
-            break;
-        }
-        trial_result = 0;
-    }
-    delete[] p;
-    delete[] q;
 }
-void task1() {
-    int size, size_negative, choice = 0, positive = 0, negative = 0, diffirence, chance;
-    std::cout << "Input size of massives:\t";
 
-    do {
-        size = numberinput();
-    } while (size < 1);
-    size_negative = size;
-    int* first_arr = new int[size];
-    int* second_arr = new int[size];
+template< typename T>
+void List< T>::removeAt(int index)
+{
+	if (index == 0)
+	{
+		pop_front();
+	}
+	else
+	{
+		Node< T>* previous = this->head;
+		for (int i = 0; i < index - 1; i++)
+		{
+			previous = previous->pNext;
+		}
 
-    create_massive(first_arr, second_arr, size);
-    std::cout << "Array:\t";
-    for (int i = 0; i < size; i++)
-    {
-        std::cout << first_arr[i] << " ";
-        if (first_arr[i] > 0)
-        {
-            positive++;
-        }
-        else if (first_arr[i] < 0) {
-            negative++;
-        }
-        if (i % 5 == 0)
-        {
-            std::cout << std::endl;
-        }
-    }
-    std::cout << "\nAmount of positive elements - " << positive << ". Negative - " << negative << "\n-----------------------" << std::endl;
-    if (positive > negative)
-    {
-        diffirence = positive - negative;
-        if (diffirence == 0)
-        {
-            std::cout << "Second array doesn`t have enought elements for operation" << std::endl;
-        }
-        for (int i = 0; i < size_negative; i++)
-        {
-            if (second_arr[i] < 0) {
-                push_back(first_arr, size, second_arr[i]);
-                diffirence--;
-                if (diffirence <= 0) {
-                    break;
-                }
-            }
 
-        }
+		Node< T>* toDelete = previous->pNext;
 
-    }
-    else if (positive < negative)
-    {
-        diffirence = negative - positive;
-        if (diffirence == 0 || negative == 0)
-        {
-            std::cout << "Second array doesn`t have enought elements for operation" << std::endl;
-        }
-        for (int i = 0; i < size_negative; i++)
-        {
-            if (second_arr[i] > 0) {
-                push_back(first_arr, size, second_arr[i]);
-                diffirence--;
-                if (diffirence <= 0) {
-                    break;
-                }
-            }
+		previous->pNext = toDelete->pNext;
 
-        }
+		delete toDelete;
 
-    }
-    positive = 0;
-    negative = 0;
-    std::cout << "Array:\t" << "\t";
-    for (int i = 0; i < size; i++)
-    {
-        std::cout << first_arr[i] << " ";
-        if (first_arr[i] > 0)
-        {
-            positive++;
-        }
-        else if (first_arr[i] < 0) {
-            negative++;
-        }
-        if (i % 5 == 0)
-        {
-            std::cout << std::endl;
-        }
-    }
-    if (positive - negative == 0)
-    {
-        std::cout << "\nAmount of positive elements - " << positive << ". Negative - " << negative << "\n-----------------------" << std::endl;
-    }
-    else {
-        std::cout << "Second array doesn`t have enought elements for operation" << "\n-----------------------" << std::endl;
-    }
+		Size--;
+	}
 
-    delete[] second_arr;
-    delete[] first_arr;
 }
-void task2() {
-    int size, x, result;
-    std::cout << "Input size of massives:\t";
-    do {
-        size = numberinput();
-    } while (size < 1);
-    int* first_arr = new int[size];
-    create_massive(first_arr, size);
-    InsertSort(first_arr, size);
-    for (int i = 0; i < size; i++)
-    {
-        std::cout << first_arr[i] << " ";
-    }
-    std::cout << "input x" << std::endl;
-    x = numberinput();
-    result = exponentialSearch(first_arr, size, x);
-    result == -1 ? std::cout << "Element is not present in array" : std::cout << "Element is present at index " << result;
-    delete[] first_arr;
+
+template< typename T>
+void List< T>::pop_back()
+{
+	removeAt(Size - 1);
 }
-void task3() {
-    int n, choice, x, rangemin, rangemax;
-    float result = 0;
-    std::cout << "Input n: ";
-    do {
-        n = numberinput();
-    } while (n < 2);
-    int arrsize = 0;
-    //Користувач вводить кількість многочленів, а ми створюємо масив із коофіцієнтів, яких на 1 більше
-    float* a = new float[n];
-    float* k = new float[arrsize];//масив корнів
-    std::cout << "\nChoos type of massive creation:\n 1 - manual(input element of arrays by your keybord\n 2 - auto(massives will fill automaticaly by random numbers\n:";
-    while (true) {
-        choice = numberinput();
-        if (choice == 1 || choice == 2)
-        {
-            break;
-        }
-        else {
-            std::cout << "try again:";
-        }
-    }
-    switch (choice) {
-    case 1:
-        for (int i = 0; i <= n; i++)
-        {
-            std::cout << "Set k";
-            a[i] = numberinput();
-        }
-        break;
-    case 2:
-        std::cout << "Set begin of range" << std::endl;
-        rangemin = numberinput();
-        do {
-            std::cout << "Set end of range" << std::endl;
-            rangemax = numberinput();
-        } while (rangemax < rangemin);
-        for (int i = 0; i <= n; i++)
-        {
-            a[i] = rand() % rangemax + rangemin;
-        }
-        break;
-    }
-    for (int i = 0; i <= n; i++)
-    {
-        if (i == 0 || a[i] < 0 && n - i != 0)
-        {
-            std::cout << a[i] << "*x^" << n - i;
-        }
-        else if (n - i != 0) {
-            std::cout << " + " << a[i] << "*x^" << n - i;
-        }
-        else {
-            if (a[i] > 0)
-            {
-                std::cout << " + " << a[i];
-            }
-            else {
-                std::cout << a[i];
-            }
-        }
 
-    }
-    std::cout << std::endl;
-    int size_of_fucking_final_massive = 1;
-    int size_of_fucking_final_massive_2 = 1;
-    int n1 = 1;
-    bool flag;
-    float result_final = 0;
-    find_root(a, n, k, arrsize, result);
-    float* final = new float[size_of_fucking_final_massive];
-    float* final1 = new float[size_of_fucking_final_massive_2];
-    final[0] = a[0];
-    if (result == 0)
-    {
-        std::cout << "The polinom doesn`t have roots" << std::endl;
-    }
-    else {
-        for (int i = 1; i <= n; i++)
-        {
-            if (i == 1)
-            {
+struct Student {
+	enum Faculty
+	{
+		NFaculty=0,
+		FIT = 1,
+		Cybernetic = 2
 
-                push_back(final, size_of_fucking_final_massive, result * a[i - 1] + a[i]);
-            }
-            else {
-                result_final = result * final[i - 1] + float(a[i]);
-                push_back(final, size_of_fucking_final_massive, result_final);
-            }
+	};
+	MyString name;
+	int stipedndia;
+	int mark;
+	Faculty faculty;
+	int cource;
+	int group;
+	Student() {
+		this->mark = NULL;
+		this->faculty = NFaculty;
+		this->stipedndia = NULL;
+		this->cource = NULL;
+		this->group = NULL;
+	}
+	Student(MyString name, int mark, int choice,int cource,int group) {
+		this->name = name;
+		this->mark = mark;
+		this->stipedndia = NULL;
+		this->cource = cource;
+		this->group = group;
+		this->faculty = static_cast< Faculty>(choice);
 
-        }
-        if (result_final == 0)
-        {
-            pop_back(final, size_of_fucking_final_massive);
-            if (result < 0)
-            {
-                std::cout << "\n\n( x+" << fabs(result) << " )" << "( ";
-                for (int i = 0; i < size_of_fucking_final_massive; i++)
-                {
-                    if (i == 0 || final[i] < 0 && size_of_fucking_final_massive - i != 0)
-                    {
-                        std::cout << final[i] << "*x^" << n - i;
-                    }
-                    else if (size_of_fucking_final_massive - i != 0) {
-                        std::cout << " + " << final[i] << "*x^" << size_of_fucking_final_massive - i;
-                    }
-                    else {
-                        if (final[i] > 0)
-                        {
-                            std::cout << " + " << final[i];
-                        }
-                        else {
-                            std::cout << final[i];
-                        }
-                    }
-                }
-            }
-            else {
-                std::cout << "\n\n( x-" << result << " )" << "( ";
-                for (int i = 0; i < size_of_fucking_final_massive; i++)
-                {
-                    if (i == 0 || final[i] < 0 && size_of_fucking_final_massive - i != 0)
-                    {
-                        std::cout << final[i] << "*x^" << n - i;
-                    }
-                    else if (size_of_fucking_final_massive - i != 0) {
-                        std::cout << " + " << final[i] << "*x^" << size_of_fucking_final_massive - i;
-                    }
-                    else {
-                        if (final[i] > 0)
-                        {
-                            std::cout << " + " << final[i];
-                        }
-                        else {
-                            std::cout << final[i];
-                        }
-                    }
-                }
-            }
+	}
+	Student(MyString name, int mark, int stipendia, int choice, int cource, int group) :Student(name, mark, choice,cource,group) {
+		this->stipedndia = stipendia;
+	}
+	void Show_info() {
+		cout << "|Name: " << setw(5);
+		name.Print();
+		cout << setw(8) << " |Mark:" << setw(5) << mark << setw(5) << setw(5) << " |Cource " << cource << setw(5) << " |Group " << group << " |Faculty: " << setw(9);
+		if (faculty ==FIT)
+		{
+			cout << "FIT        " << setw(9);
+		}
+		else {
+			cout << "Cybernetic " << setw(9);
+		}
 
-            std::cout << " )" << std::endl;
-            while (true) {
-                if (n1 % 2 == 0)
-                {
-                    Gorner(final1, final, result, size_of_fucking_final_massive_2, size_of_fucking_final_massive, n1, flag);
-                }
-                else {
-                    Gorner(final, final1, result, size_of_fucking_final_massive, size_of_fucking_final_massive_2, n1, flag);
-                }
-                if (!flag)
-                {
-                    break;
-                }
+		cout<<"|Stypendia: " << setw(5) << stipedndia << " |" << endl;
+	}
+};
+void task1(List< Student>& Group) {
+	Print_(60);
+	float averageMark = 0;
+	float AmountOfStudentWithStipendia = 0;
+	for (size_t i = 0; i < Group.GetSize(); i++)
+	{
 
-                flag = false;
-            }
-            if (n1 == 0)
-            {
-                std::cout << "Root doesn`t have a power" << std::endl;
-            }
-            else {
-                std::cout << "Power of root is - " << n1 << std::endl;
-            }
-        }
-        else {
-            std::cout << "This equation doesn`t have a roots" << std::endl;
-        }
-    }
-
-    delete[] final;
-    delete[] k;
+		if (Group[i].stipedndia!=NULL)
+		{
+			Group[i].Show_info();
+			AmountOfStudentWithStipendia++;
+			averageMark += Group[i].mark;
+		}
+	}
+	cout << "Averege mark: " << averageMark / AmountOfStudentWithStipendia << endl;
+	Print_(60);
+}
+void task2(List< Student>& Group) {
+	Print_(60);
+	int FitProblems = 0, CyberneticProbelems=0;
+	for (size_t i = 0; i < Group.GetSize(); i++)
+	{
+		if (Group[i].mark==2 && Group[i].faculty==1)
+		{
+			FitProblems++;
+		}
+		else if (Group[i].mark == 2 && Group[i].faculty == 2)
+		{
+			CyberneticProbelems++;
+		}
+	}
+	cout << "FIT = " << FitProblems << endl;
+	cout << "Cybernetic = " << CyberneticProbelems << endl;
+	if (FitProblems> CyberneticProbelems)
+	{
+		cout << "Cybernetic has less flunkey than FIT" << endl;
+	}
+	else {
+		cout << "FIT has less flunkeys than Cybernetic" << endl;
+	}
+	Print_(60);
+}
+void task3(List< Student>& Group){
+	Print_(60);
+	int FITAchivments = 0, CyberneticAchivments = 0;
+	for (size_t i = 0; i < Group.GetSize(); i++)
+	{
+		if (Group[i].mark == 5 && Group[i].faculty == 1)
+		{
+			FITAchivments++;
+		}
+		else if (Group[i].mark == 5 && Group[i].faculty == 2)
+		{
+			CyberneticAchivments++;
+		}
+	}
+	cout << "FIT = " << FITAchivments << endl;
+	cout << "Cybernetic = " << CyberneticAchivments << endl;
+	if (FITAchivments > CyberneticAchivments)
+	{
+		cout << "FIT has more excellent student than Cybernetic" << endl;
+	}
+	else {
+		cout << "Cybernetic has more excellent student than FIT" << endl;
+	}
+	Print_(60);
 }
 int main()
 {
-    int chs; //choice
-   // srand(time(NULL));
-    setlocale(LC_ALL, "Rus");
-    std::cout << "\n----START----\nLab 6. Var23. Student Fesak Andrii IPZ-12\nWelcome to see recurent function in C++\n--------" << std::endl;
-    while (true) {
-        std::cout << "\nChoose the task by press (1)(2)(3) on your keyboard:  ";
-        chs = numberinput();
-        switch (chs) {
-        case 1:
-            system("cls");
-            task1();
-            break;
-        case 2:
-            system("cls");
-            task2();
-            break;
-        case 3:
-            system("cls");
-            task3();
-            break;
-        }
 
-        std::cout << "\nDo you want to continue?\n1 - No\nAnything else - Yes\nYour answer: ";
-        std::cin >> chs;
-        if (chs == 1)
-        {
-            break;
-            system("cls");
-        }
+	srand(time(NULL));
+	List< Student> Group;
+	List< MyString> Names;
+	Names.push_back("     Ivan");
+	Names.push_back("  Rodslav");
+	Names.push_back("Volodimir");
+	Names.push_back("   Albert");
+	Names.push_back("   Arthur");
+	Names.push_back("  Vilgeim");
+	Names.push_back("      Ada");
+	Names.push_back("    Pavlo");
+	Names.push_back("    Magda");
+	Names.push_back("   Darina");
+	Names.push_back("    Julia");
+	Names.push_back("   Ustina");
+	srand(time(NULL));
+	for (int i1 = 1; i1 < 3; i1++)
+	{
+			for (int i2 = 1; i2 < 5; i2++)
+			{
+				for (int i = 1; i < 5; i++)
+				{
+					for (int i = 0; i < 4; i++)
+					{
+						int chance_on_stypendia = rand() % 100;
+						if (chance_on_stypendia < 50)
+						{
+							int mark, stipendia;
+							int name;
+							mark = 4+ rand() %  2;
+							name = rand() % 11;
+							stipendia = rand() % 200 + 50;
 
-    }
+							MyString nameofst = Names[name];
+							Student withsipendia = { nameofst,mark,stipendia,i1,i2,i };
+							Group.push_back(withsipendia);
+						}
+						else {
+							int mark;
+							int name;
+							mark = 2 + rand() %  2;
+							name = rand() % 11;
+							MyString nameofst = Names[name];
+							Student withoutStipendia = { nameofst,mark,i1,i2,i };
+							Group.push_back(withoutStipendia);
+						}
+
+					}
+				}
+
+		}
+	}
+	/*for (int i = 0; i < Group.GetSize();i++)
+	{
+		Group[i].Show_info();
+	}*/
+	int Ch;
+	std::cout << "\n----START----\nLab 10. Var23. Student Fesak Andrii IPZ-12\nWelcome to see recurent function in C++\n--------" << std::endl;
+	//Логічно, що програма повинна виконуватись поки користувач цього хоче тому while(true)
+	while (true) {
+		Print_(60);
+		std::cout << "\nSelect item by press (1)(2) on your keyboard:\n1. Student with scholarship\n2.Faculty with the less amount of flunkeys \n3.Faculty with the best study level\nAnything else. - Exit" << endl;
+		Print_(60);
+		Ch = NumberInput();
+		choice = static_cast< Choice>(Ch);
+		switch (choice) {
+		case First:
+			system("cls");
+			task1(Group);
+			break;
+		case Second:
+			system("cls");
+			task2(Group);
+			break;
+		case Third:
+		system("cls");
+		task3(Group);
+		break;
+		default:
+			//Потрібен метод виходу з програми
+			std::cout << "\nDo you want to continue?\n1 - No\nAnything else - Yes\nYour answer: ";
+			std::cin >> Ch;
+			choice = static_cast< Choice>(Ch);
+			if (choice == First)
+			{
+				choice = EndStatus;
+			}
+			break;
+		}
+		//Потрібен метод виходу з програми
+		if (choice == EndStatus) break;
+	}
+}
+//Нам пртрібен алгоритм зручної перевіри на число, тобто ця функція перевіряє, чи ввів користувач число
+float NumberInput() {
+	float x;
+	while (!(std::cin >> x)) {
+		std::cout << "Some of inputs were wrong, try again\n";
+		std::cin.clear();
+		fflush(stdin);
+		std::cin.ignore(std::numeric_limits< std::streamsize>::max(), '\n');
+	}
+	return x;
+}
+void Print_(const int& amount) {
+	for (int i = 0; i < amount; i++)
+	{
+		std::cout << "_";
+	}
+	std::cout << "\n" << endl;
 }
         </code>
       </pre>

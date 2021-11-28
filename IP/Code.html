@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/menu.css">
+  <link href="../css/hover.css" rel="stylesheet" media="all">
+  <link href="Lab.css" rel="stylesheet">
+  <link rel='stylesheet' href='../box-shadows.css'>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <meta name="theme-color" content="#fafafa">
+</head>
+<script src="../js/main.js"></script>
+<body>
+<div class="circlegradient" id="firstcircle"></div>
+<div class="circlegradient" id="secondcircle"></div>
+<div class="menu_g">
+  <div class="menu_u">
+    <map class="aa"><a href="../menu.html"><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/menu.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Меню</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href="purpose.html"><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/target.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Мета Роботи</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href="task3.html"><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/audit.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Умова задачі</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=Analize.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/search.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Аналіз задачі</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=Code.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/programming-code-signs.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Код програми</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=result.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/check-mark.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Результат<br>виконання </h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=proof.html> <div class="gradieninputsqz hvr-grow" >
+      <img src="../img/approve.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Аналіз достовірності</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=conclusion.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/finalq.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Висновки</h2></div>
+  </div>
+
+
+
+
+</div>
+<div class="mblock" id="generalqzzzz">
+  <h1 id="maintextqqq">Код програми</h1>
+  <div id="gradieninputsq" >
+    <img src="../img/programming-code-signs.png" class="manuelement"></div>
+  <div class="line" id="firstlineqq"></div>
+  <div id="purposetext">
+  <div class="container">
+    <p class="language">C++</p>
+    <div class="code-wrapper">
+      <pre>
+        <code id="code">
+
+enum Choice {
+    First = 1,
+    Second = 2,
+    Third = 3,
+    Fourth = 4,
+    Fifth = 5,
+    Sixth = 6,
+    EndStatus = 222
+};
+std::ofstream writeCsv("links.csv");
+void Print_(const int& amount) {
+    for (int i = 0; i < amount; i++)
+    {
+        std::cout << "_";
+    }
+    std::cout << "\n" << std::endl;
+}
+void search_for_links(GumboNode* node)
+{
+    if (node->type != GUMBO_NODE_ELEMENT)
+        return;
+
+    if (node->v.element.tag == GUMBO_TAG_A)
+    {
+        GumboAttribute* href = gumbo_get_attribute(&node->v.element.attributes, "href");
+        if (href)
+        {
+            std::string link = href->value;
+            if (link.rfind("/wiki") == 0)
+                writeCsv << "article," << link << "\n";
+            else if (link.rfind("#cite") == 0)
+                writeCsv << "cite," << link << "\n";
+            else
+                writeCsv << "other," << link << "\n";
+        }
+    }
+
+    GumboVector* children = &node->v.element.children;
+    for (unsigned int i = 0; i < children->length; i++)
+    {
+        search_for_links(static_cast< GumboNode*>(children->data[i]));
+    }
+}
+void search_for_LI(GumboNode* node) {
+    if (node->type != GUMBO_NODE_ELEMENT)
+        return;
+    if (node->v.element.tag== GUMBO_TAG_LI)
+    {
+        GumboNode* title_text = static_cast< GumboNode*>(node->v.element.children.data[0]);
+        std::cout << node->v.text.text<< std::endl;
+    }
+}
+void search_for_title(GumboNode* node)
+{
+    if (node->type != GUMBO_NODE_ELEMENT) {
+        return;
+    }
+    GumboAttribute* vacancy_section;
+    if (node->v.element.tag == GUMBO_TAG_LI && node->parent->parent->v.element.tag== GUMBO_TAG_DIV && (vacancy_section=gumbo_get_attribute( & node->parent->parent->v.element.attributes, "id")))
+    {
+        //&& (vacancy_section = gumbo_get_attribute(&node->v.element.attributes, "id"))
+        //GumboVector* childrenq = &node->v.element.children;
+        /*for (size_t i = 0; i < node->v.element.attributes.length; i++)
+        {
+            search_for_LI(static_cast< GumboNode*>(node->v.element.attributes.data[i]));
+        }*/
+        //if (node->v.element.tag == GUMBO_TAG_LI)
+        //{
+        //    /*if (vacancy_section->value == "h1-name")
+        //    {*/
+        GumboNode* title_text = static_cast< GumboNode*>(node->v.element.children.data[0]);
+        std::fstream fs;
+        fs.open("result.txt", std::fstream::app);
+        fs << title_text->v.text.text << "\n";
+         std::cout << title_text->v.text.text << "\n";
+        //std::cout << vacancy_section->value << "\n";
+         return;
+
+
+        //}
+    }
+
+
+    GumboVector* children = &node->v.element.children;
+    for (unsigned int i = 0; i < children->length; i++)
+        search_for_title(static_cast< GumboNode*>(children->data[i]));
+}
+
+std::string extract_html_page()
+{
+    cpr::Url url = cpr::Url{ "https://www.work.ua/ru/jobs/3724496/" };
+    cpr::Response response = cpr::Get(url);
+    return response.text;
+}
+std::string extract_html_page(std::string urls)
+{
+    cpr::Url url = cpr::Url{ urls };
+    cpr::Response response = cpr::Get(url);
+    return response.text;
+}
+void task1(std::string &page_content) {
+    std::string addres;
+    std::cout << "Input address" << std::endl;
+    std::cin >> addres;
+    page_content = extract_html_page(addres);
+}
+void task2(std::string& page_content) {
+    GumboOutput* parsed_response = gumbo_parse(page_content.c_str());
+    search_for_title(parsed_response->root);
+}
+int main()
+{
+    std::string page_content = extract_html_page();
+    GumboOutput* parsed_response = gumbo_parse(page_content.c_str());
+
+
+    // free the allocated memory
+
+    std::cout << "\n----START----\nProject. Student Fesak Andrii IPZ-12\nWelcome to see parser in C++\n--------" << std::endl;
+    //Логічно, що програма повинна виконуватись поки користувач цього хоче тому while(true)
+    int Ch;
+    Choice choice;
+    while (true) {
+        Print_(60);
+        std::cout << "\nSelect item by press (1)(2) on your keyboard:\n1. set adress\n2.start search(if you didn`t set adress program will use standart one\nAnything else. - Exit" << std::endl;
+        Print_(60);
+        std::cin >> Ch;
+        choice = static_cast< Choice>(Ch);
+        switch (choice) {
+        case First:
+            system("cls");
+            task1(page_content);
+            break;
+        case Second:
+            system("cls");
+            task2(page_content);
+            break;
+        default:
+            //Потрібен метод виходу з програми
+            std::cout << "\nDo you want to continue?\n1 - No\nAnything else - Yes\nYour answer: ";
+            std::cin >> Ch;
+            choice = static_cast< Choice>(Ch);
+            if (choice == First)
+            {
+                choice = EndStatus;
+            }
+            break;
+        }
+        //Потрібен метод виходу з програми
+        if (choice == EndStatus) break;
+    }
+    gumbo_destroy_output(&kGumboDefaultOptions, parsed_response);
+}
+        </code>
+      </pre>
+      <button id="copy-button">Copy</button>
+    </div>
+    <span id="copy-success">Code copied!</span>
+  </div>
+
+  </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+</body>
+</html>

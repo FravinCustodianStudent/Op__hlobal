@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/menu.css">
+  <link href="../css/hover.css" rel="stylesheet" media="all">
+  <link href="Lab.css" rel="stylesheet">
+  <link rel='stylesheet' href='../box-shadows.css'>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <meta name="theme-color" content="#fafafa">
+</head>
+<script src="../js/main.js"></script>
+<body>
+<div class="circlegradient" id="firstcircle"></div>
+<div class="circlegradient" id="secondcirclez"></div>
+<div class="menu_g">
+  <div class="menu_u">
+    <map class="aa"><a href="../menu.html"><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/menu.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Меню</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href="purpose.html"><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/target.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Мета Роботи</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href="task3.html"><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/audit.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Умова задачі</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=Analize.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/search.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Аналіз задачі</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=Code.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/programming-code-signs.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Код програми</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=result.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/check-mark.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Результат<br>виконання </h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=proof.html> <div class="gradieninputsqz hvr-grow" >
+      <img src="../img/approve.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Аналіз достовірності</h2></div>
+  </div>
+  <div class="menu_u">
+    <map class="aa"><a href=conclusion.html><div class="gradieninputsqz hvr-grow" >
+      <img src="../img/finalq.png" class="manuelementq">
+    </div></a></map>
+    <div class="hovertext"  ><h2 class="ht">Висновки</h2></div>
+  </div>
+
+
+
+
+</div>
+<div >
+
+</div>
+
+<div class="mblock" id="generalz">
+  <h1 id="maintextq">Аналіз Задачі</h1>
+  <div id="gradieninputsq" >
+    <img src="../img/search.png" class="manuelement"></div>
+  <div class="line" id="firstlineqq"></div>
+  <div id="purposetext">
+    <p><br><br>
+Задача полягає в пошуку та запису інформації стосовно існуючих вакансій. Для прикладу візьмемо сайт Work.ua <a href="https://www.work.ua/ru/jobs/3724496/" >https://www.work.ua/ru/jobs/3724496/</a>.
+      <br>
+      <img src="Lab_img/21.PNG" class="innerimage" id="xc">
+      <br>
+      У даних колонках ми можемо побачити опис вакансії та необхідні навички для початку роботи.<br><br>
+      Це є данні на веб сайті, які звичайним чином опрацювати не вийде. Тому для роботи на знадобится деякий функціонал для аналізу html документа.<br><br> Для мови C існує бібліотека Gumbo, яка призначена для парсингу html документів на C. Наша задача стоїть в проекції аналізу документу, який знаходиться на віддаленому сервері. Для того щоб його отримати для аналізу ми можемо використати бібліотеку cpr, яка призначена для задання http запитів. <br><br>Отримавши документ у нас постає задача з записом цих даних у файл тому ми будемо використовувати бібліотеку fstream.<br><br>
+      У результаті ми отримуємо алгоритм : <br><br>http запит для отримання файлу -> аналіз його вмісту за допомогою gumbo->запис результату у файл
+
+      <br></p>
+  </div>
+
+
+</div>
+</body>
+</html>

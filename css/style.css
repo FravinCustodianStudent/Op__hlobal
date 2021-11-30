@@ -84,20 +84,20 @@
   height: 100%;
 }
 .menu_u{
-  margin-top: 1.5em;
+  margin-top: 1em;
   position: relative;
   display: block;
   width:100%;
-  height: 3.5em;
+  height: 2.5em;
 }
 .gradieninputsqz{
   background: radial-gradient(82.92% 82.92% at 81.99% 10.25%, #5AB0C9 0%, #A750FF 48.8%, #F66692 99.48%);
   border-radius: 50%;
   /*  left:27px;
     top:26px;*/
-  width: 4em;
+  width: 2.5em;
   justify-content: center;
-  height: 4em;
+  height: 2.5em;
   //
   display: flex;
   flex-direction: column;
